@@ -138,4 +138,4 @@ if (language === "english" && population < 50 && numNeighbours === 0) {
     console.log(`You should live in ${country} :)`);
 } else {
     console.log(`${country} does not meet your criteria :(`);
-}
+} 
