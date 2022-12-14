@@ -223,3 +223,26 @@ if (favourite !== 23) {
     console.log("Why not 23?");
 }
 */
+
+const hasDrivingLicense = true;
+const hasGoodVision = true;
+
+console.log(hasDrivingLicense && hasGoodVision);
+console.log(hasDrivingLicense || hasGoodVision);
+console.log(!hasDrivingLicense);
+
+
+if (hasDrivingLicense && hasGoodVision) {
+    console.log("Sarah is able to drive");
+} {
+    console.log('Someone else should drive');
+}
+
+const isTired = true;
+console.log(hasDrivingLicense || hasGoodVision || isTired);
+
+if (hasDrivingLicense && hasGoodVision && !isTired) {
+    console.log("Sarah is able to drive");
+} {
+    console.log('Someone else should drive');
+}
