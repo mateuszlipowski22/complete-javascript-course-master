@@ -222,7 +222,7 @@ if (favourite === 23) {
 if (favourite !== 23) {
     console.log("Why not 23?");
 }
-*/
+
 
 const hasDrivingLicense = true;
 const hasGoodVision = true;
@@ -245,4 +245,46 @@ if (hasDrivingLicense && hasGoodVision && !isTired) {
     console.log("Sarah is able to drive");
 } {
     console.log('Someone else should drive');
+}
+
+*/
+
+const day = 'monday';
+
+switch (day) {
+    case 'monday':
+        console.log('PLan course structure');
+        console.log('Go to coding meetup');
+        break;
+    case 'tuesday':
+        console.log('Prepare theory videos');
+        break;
+    case 'wednsday':
+    case 'thursday':
+        console.log('Write code examples');
+        break;
+    case 'friday':
+        console.log('Record videos');
+        break;
+    case 'saturday':
+    case 'sunday':
+        console.log('Enjoy the weekend:D');
+        break;
+    default:
+        console.log('Not a valid day');
+}
+
+if (day === 'monday') {
+    console.log('PLan course structure');
+    console.log('Go to coding meetup');
+} else if (day === 'tuesday') {
+    console.log('Prepare theory videos');
+} else if (day === "wednsday" || day === "thursday") {
+    console.log('Write code examples');
+} else if (day === "friday") {
+    console.log('Record videos');
+} else if (day === "saturday" || day === "sunday") {
+    console.log('Enjoy the weekend:D');
+} else {
+    console.log('Not a valid day');
 }
