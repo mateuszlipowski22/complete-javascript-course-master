@@ -247,7 +247,6 @@ if (hasDrivingLicense && hasGoodVision && !isTired) {
     console.log('Someone else should drive');
 }
 
-*/
 
 const day = 'monday';
 
@@ -288,3 +287,34 @@ if (day === 'monday') {
 } else {
     console.log('Not a valid day');
 }
+
+
+3 + 4;
+1991;
+true && false && !false;
+
+if (23 > 10) {
+    const str = '23 is bigger';
+}
+const str = '23 is bigger';
+
+console.log(`I'm ${2037 - 1991 + str} `);
+
+*/
+
+const age = 15;
+age >= 18 ? console.log('I like to dring wine') : console.log('I like to dring water')
+
+const drink = age >= 18 ? 'wine' : 'water';
+
+let drink2;
+if (age > 18) {
+    drink2 = 'wine';
+} else {
+    drink2 = 'water';
+}
+
+console.log(drink);
+console.log(drink2);
+
+console.log(`I like to dring ${age >= 18 ? 'wine' : 'water'}`);
