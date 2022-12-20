@@ -1,6 +1,6 @@
 // Remember, we're gonna use strict mode in all scripts now!
 'use strict';
-
+/*
 const x = 23;
 
 console.log('test');
@@ -29,3 +29,22 @@ const findTempAmplitudeNew = function (arr1, arr2) {
 };
 
 console.log(findTempAmplitudeNew(temp, [-120, 20]));
+
+*/
+
+const measureKelvin = function () {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+    value: Number(prompt('Degrees celsius:')),
+  };
+
+  // debugger;
+  console.table(measurement);
+
+  const kelvin = measurement.value + 273;
+
+  return kelvin;
+};
+
+console.log(measureKelvin());
