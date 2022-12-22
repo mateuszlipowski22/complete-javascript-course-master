@@ -16,16 +16,22 @@ const secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
 
-document.querySelector('.number').textContent = secretNumber;
-
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
-  console.log(guess, typeof guess);
 
+  //When no imput
   if (!guess) {
     document.querySelector('.message').textContent = 'No number';
+
+    //When we have march
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = 'Correct number';
+    document.querySelector('.number').textContent = secretNumber;
+
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
+
+    //When we guess is too high
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too high';
@@ -36,6 +42,7 @@ document.querySelector('.check').addEventListener('click', function () {
       score--;
       document.querySelector('.score').textContent = score;
     }
+    //When we guess is too low
   } else if (guess < secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too low';
