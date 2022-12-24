@@ -14,14 +14,28 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
-const score = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let plaing = true;
-//Starting conditions
-score0EL.textContent = 0;
-score1EL.textContent = 0;
-diceEL.classList.add('hidden');
+let score;
+let currentScore;
+let activePlayer;
+let plaing;
+
+const init = function () {
+  score = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  plaing = true;
+  score0EL.textContent = 0;
+  score1EL.textContent = 0;
+  current0EL.textContent = 0;
+  current1EL.textContent = 0;
+  diceEL.classList.add('hidden');
+  player0EL.classList.add('player--active');
+  player0EL.classList.remove('player--winner');
+  player1EL.classList.remove('player--active');
+  player1EL.classList.remove('player--winner');
+};
+
+init();
 
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -62,7 +76,7 @@ btnHold.addEventListener('click', function () {
       score[activePlayer];
 
     //2. Checki if score is above 100
-    if (score[activePlayer] >= 10) {
+    if (score[activePlayer] >= 100) {
       plaing = false;
       diceEL.classList.add('hidden');
       document
@@ -76,3 +90,5 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+btnNew.addEventListener('click', init);
