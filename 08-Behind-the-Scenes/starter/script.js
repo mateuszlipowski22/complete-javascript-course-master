@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
   console.log(firstName);
@@ -25,3 +26,40 @@ function calcAge(birthYear) {
 
 const firstName = 'Jonas';
 calcAge(1990);
+
+*/
+
+// console.log(me);
+// console.log(job);
+// console.log(year);
+
+var me = 'Mateusz';
+let job = 'Engineer';
+const year = 1990;
+
+function addDecal(a, b) {
+  return a + b;
+}
+
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+const addArrow = (a, b) => a + b;
+
+// example
+// if (!numProducts) deleteShoppingCart();
+
+// var numProducts = 10;
+
+// function deleteShoppingCart() {
+//   console.log('All products deleted!');
+// }
+
+var x = 1;
+let y = 2;
+const z = 3;
+
+console.log(x === window.x);
+console.log(y === window.y);
+console.log(z === window.z);
