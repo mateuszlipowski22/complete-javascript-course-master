@@ -102,7 +102,7 @@ matilda.calcAge();
 const f = Jonas.calcAge;
 
 f();
-*/
+
 
 // var firstName = 'Matilda';
 
@@ -151,3 +151,65 @@ var addArrow = (a, b) => {
 };
 
 addArrow(2, 5, 7);
+
+
+
+let age = 30;
+let oldAge = age;
+
+age = 31;
+
+console.log(age);
+console.log(oldAge);
+
+const me = {
+  name: 'Jonas',
+  age: 30,
+};
+
+const friend = me;
+friend.age = 27;
+console.log('Friend', friend);
+console.log('Me', me);
+
+*/
+
+let lasName = 'Williams';
+let oldLastName = lasName;
+lasName = 'Davis';
+console.log(lasName, oldLastName);
+
+const Jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+// const marriedJessica = Jessica;
+// marriedJessica.lastName = 'Davis';
+
+// console.log('Before: ', Jessica);
+// console.log('After: ', marriedJessica);
+
+//marriedJessica = {}
+
+//Copying objects
+
+const Jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Aloce', 'Bob'],
+};
+
+const jessicaCopy = Object.assign({}, Jessica2);
+jessicaCopy.lastName = 'Davis';
+
+console.log('Before: ', Jessica2);
+console.log('After: ', jessicaCopy);
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+
+console.log('Before: ', Jessica2);
+console.log('After: ', jessicaCopy);
