@@ -47,8 +47,49 @@ const restaurant = {
     ${ing2}
     ${ing3}`);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
+// Spread, because of on right side of =
+const arr = [1, 2, 3, ...[3, 4]];
+
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+//Objects
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+
+//Function
+const add = function (...numbers) {
+  let sum = 0;
+  for (let index = 0; index < numbers.length; index++) {
+    sum += numbers[index];
+  }
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 5, 1, 1);
+add(4, 2, 1, 3, 4, 5, 5, 2, 1, 1);
+
+const x = [23, 1, 3];
+add(...x);
+
+restaurant.orderPizza('tomatoes', 'ham', 'salame', 'onion');
+
+/*
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 
@@ -95,7 +136,7 @@ console.log(restaurantCopy.name);
 console.log(restaurant.name);
 
 //Destructuring Objects
-/*
+
 restaurant.orderDelivery({
   time: '22:30',
   address: 'Via del Sole, 32',
