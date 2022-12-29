@@ -54,6 +54,35 @@ const restaurant = {
   },
 };
 
+//Any date type, returen any data type, short-circutting
+console.log('-----  Or -----');
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----- And -----');
+console.log(0 && 'Jonas');
+console.log(7 && 'Jonas');
+
+console.log('Hello' && 23 && null && 'jonas');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+/*
 // Spread, because of on right side of =
 const arr = [1, 2, 3, ...[3, 4]];
 
@@ -89,7 +118,7 @@ add(...x);
 
 restaurant.orderPizza('tomatoes', 'ham', 'salame', 'onion');
 
-/*
+
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 
