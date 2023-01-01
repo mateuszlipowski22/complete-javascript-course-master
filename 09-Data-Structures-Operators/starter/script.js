@@ -79,6 +79,7 @@ const restaurant = {
   },
 };
 
+/*
 const question = new Map([
   ['question', 'What is the best programming language in the world?'],
   [1, 'C'],
@@ -113,7 +114,7 @@ console.log(...question.entries());
 console.log(...question.keys());
 console.log(...question.values());
 
-/*
+
 const rest = new Map();
 
 rest.set('name', 'Classico Italiano');
