@@ -79,6 +79,36 @@ const restaurant = {
   },
 };
 
+const rest = new Map();
+
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open')
+  .set(false, 'We are closed');
+console.log(rest.get('name'));
+console.log(rest.get(1));
+console.log(rest.get(true));
+
+const time = 21;
+rest.get(time > rest.get('open') && time < rest.get('closed'));
+
+console.log(rest.has('categories'));
+rest.delete(2) / console.log(rest);
+console.log(rest.size);
+// console.log(rest.clear());
+console.log(rest);
+
+const arr = [1, 2];
+console.log(rest.set(arr, 'Test'));
+console.log(rest.get(arr));
+
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest.get(document.querySelector('h1')));
 /*
 //Propertie names
 const propertires = Object.keys(openingHours);
