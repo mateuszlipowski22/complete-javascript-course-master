@@ -205,7 +205,7 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 //1
-const events = new Array(...new Set(gameEvents.values()).values());
+const events = [...new Set(gameEvents.values()).values()];
 console.log(events);
 
 //2
@@ -214,11 +214,9 @@ console.log(gameEvents);
 
 //3
 
-let avgEvent = 0;
-for (const event of gameEvents.keys()) {
-  avgEvent += event;
-}
-console.log(`An event happened, on average, every ${avgEvent / 90} minutes`);
+console.log(
+  `An event happened, on average, every ${92 / gameEvents.size} minutes`
+);
 
 //4
 
