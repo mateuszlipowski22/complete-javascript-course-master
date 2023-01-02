@@ -80,6 +80,83 @@ const restaurant = {
 };
 
 const airline = 'TAP Air Portugal';
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+const passenger = 'jOnaS';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+
+console.log(passengerCorrect);
+
+const capitalization = function (string) {
+  const stringLower = string.toLowerCase();
+  return stringLower[0].toUpperCase() + stringLower.slice(1);
+};
+
+console.log(capitalization('hUsaJA'));
+
+//comparing emails
+const email = 'hello@jonas.io';
+const loginEmail = ' Hello@Jonas.IO \n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = loginEmail.trim();
+console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+
+console.log(email === normalizedEmail);
+
+const normalizedEmailFunction = function (email, correctEmail) {
+  return correctEmail === email.toLowerCase().trim();
+};
+
+console.log(normalizedEmailFunction(loginEmail, email));
+
+//replacing
+
+const priceGB = '288,97&';
+const priceUS = priceGB.replace('&', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement = 'All passengers to bearding door 23. Bearding door 23';
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+
+console.log(announcement.replace(/door/g, 'gate'));
+
+//Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family');
+}
+
+//Practice exercise
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are not allowed on board');
+  } else {
+    console.log('Welcome aboard');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket knife');
+checkBaggage('Sock and camera');
+checkBaggage('got some snacks and a gun for protection');
+
+/*
+
+const airline = 'TAP Air Portugal';
 const plane = 'A320';
 
 console.log(plane[0]);
@@ -122,7 +199,7 @@ console.log(new String('Jonas'));
 console.log(typeof new String('Jonas'));
 console.log(typeof new String('Jonas').slice(1));
 
-/*
+
 const question = new Map([
   ['question', 'What is the best programming language in the world?'],
   [1, 'C'],
