@@ -26,6 +26,9 @@
 // Then, call the function again with players from game.scored
 // GOOD LUCK 😀
 
+/*
+
+
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -225,3 +228,53 @@ for (const [minute, event] of gameEvents.entries()) {
   console.log(`[${half}] ${minute}:`);
   console.log(`${event}`);
 }
+
+*/
+
+// Coding Challenge #4
+// Write a program that receives a list of variable names written in underscore_case
+// and convert them to camelCase.
+// The input will come from a textarea inserted into the DOM (see code below to
+// insert the elements), and conversion will happen when the button is pressed.
+// Test data (pasted to textarea, including spaces):
+// underscore_case
+// first_name
+// Some_Variable
+// calculate_AGE
+// delayed_departure
+// Should produce this output (5 separate console.log outputs):
+// underscoreCase ✅
+// firstName ✅✅
+// someVariable ✅✅✅
+// calculateAge ✅✅✅✅
+// delayedDeparture ✅✅✅✅✅
+// Hints:
+// § Remember which character defines a new line in the textarea 😉
+// § The solution only needs to work for a variable made out of 2 words, like a_b
+// § Start without worrying about the ✅. Tackle that only after you have the variable
+// name conversion working 😉
+// § This challenge is difficult on purpose, so start watching the solution in case
+// you're stuck. Then pause and continue!
+// Afterwards, test with your own test data!
+// GOOD LUCK 😀
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const button = document.querySelector('button');
+const textarea = document.querySelector('textarea');
+
+const camelCase = function (stringToConvert) {
+  let [first, second] = stringToConvert.toLowerCase().trim().split('_');
+  second = second.slice(0, 1).toUpperCase() + second.slice(1);
+  return first + second;
+};
+
+button.addEventListener('click', function () {
+  const inputText = textarea.value;
+  const inputArray = inputText.split('\n');
+
+  for (const [i, element] of inputArray.entries()) {
+    console.log(camelCase(element).padEnd(20, ' ') + '✅'.repeat(i + 1) + '\n');
+  }
+});
