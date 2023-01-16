@@ -192,6 +192,21 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount / 10));
+  {
+    //Add movement
+    currentAccount.movements.push(amount);
+
+    //Update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -392,3 +407,23 @@ console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 
 */
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//Equality
+console.log(movements);
+console.log(movements.includes(-130));
+
+//Condition
+console.log(movements.some(mov => mov === 1500));
+const anyDeposits = movements.some(mov => mov > 1500);
+console.log(anyDeposits);
+
+//Every
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+//Separate callback
+const deposite = mov => mov > 0;
+console.log(movements.some(deposite));
+console.log(movements.every(deposite));
+console.log(movements.filter(deposite));
