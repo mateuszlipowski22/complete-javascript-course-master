@@ -340,4 +340,86 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'blue';
   });
 });
+
+
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const priceCents = 345_99;
+console.log(priceCents);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+const PI = 3.1415;
+console.log(PI);
+
+console.log(Number('230_000'));
+console.log(Number.parseInt('230_000'));
+
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+// BigInt
+console.log(92309203923290320392382938239238n);
+console.log(BigInt(92309203923290320392382938239238));
+
+//Operations
+console.log(10000n + 10000n);
+console.log(24156575415631561n * 4894126531894165165n);
+
+const huge = 454845648796465n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+// Exceptions;
+console.log(20n > 15);
+console.log(20n === 15);
+console.log(typeof 20n);
+console.log(20n == '20');
+
+console.log(huge + ' is REALLY big!!!');
+
+//Divisions
+console.log(11n / 3n);
+console.log(10 / 3);
+
+//Create a date
+
+const now = new Date();
+console.log(now);
+
+console.log(new Date('December 24, 2015'));
+console.log(new Date('Aug 02 2022 18:05'));
+
+console.log(account1.movementsDates[0]);
+
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+
+console.log(new Date(0));
+console.log(3 * 24 * 60 * 60 * 1000);
+
 */
+
+//Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+
+console.log(future.toISOString());
+
+console.log(new Date(2142256980000));
+
+console.log(Date.now);
+
+future.setFullYear(2040);
+console.log(future);
