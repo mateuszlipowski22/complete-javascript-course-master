@@ -42,8 +42,8 @@ const account2 = {
     '2020-01-25T14:18:46.235Z',
     '2020-02-05T16:33:06.386Z',
     '2020-04-10T14:43:26.374Z',
-    '2020-06-25T18:49:59.371Z',
-    '2020-07-26T12:01:20.894Z',
+    '2023-01-18T18:49:59.371Z',
+    '2023-01-19T12:01:20.894Z',
   ],
   currency: 'USD',
   locale: 'en-US',
@@ -78,6 +78,21 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const formatMovementDate = function (date) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (24 * 60 * 60 * 1000));
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  const day = `${date.getDate()}`.padStart(2, 0);
+  const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -89,10 +104,7 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formatMovementDate(date);
 
     const html = `
       <div class="movements__row">
@@ -184,6 +196,9 @@ btnLogin.addEventListener('click', function (e) {
     const hour = `${now.getHours() + 1}`.padStart(2, 0);
     const min = `${now.getMinutes() + 1}`.padStart(2, 0);
     labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+
+    const calcDaysPassed = (date1, date2) =>
+      Math.abs(date2 - date1) / (24 * 60 * 60 * 1000);
 
     //Clear input fields
     inputLoginPin.value = inputLoginUsername.value = '';
@@ -456,3 +471,13 @@ console.log(Date.now);
 future.setFullYear(2040);
 console.log(future);
 */
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(+future);
+
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (24 * 60 * 60 * 1000);
+
+const days1 = calcDaysPassed(new Date(2037, 3, 14, 8), new Date(2037, 3, 24));
+
+console.log(days1);
