@@ -178,6 +178,29 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  let time = 120;
+
+  const tick = function () {
+    // call the timer every second
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    time--;
+  };
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${formatCur(
@@ -187,13 +210,13 @@ const calcDisplayBalance = function (acc) {
   )}`;
 };
 
-// Event handler
-let currentAccount;
+// // Event handler
+let currentAccount, timer;
 
-//Fake always logged in
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// // //Fake always logged in
+// // currentAccount = account1;
+// // updateUI(currentAccount);
+// // containerApp.style.opacity = 100;
 
 // day/month/year
 
@@ -236,6 +259,10 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.value = inputLoginUsername.value = '';
     inputLoginPin.blur();
 
+    //Timer
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     updateUI(currentAccount);
   }
 });
@@ -264,6 +291,10 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.movementsDates.push(new Date().toISOString());
 
     updateUI(currentAccount);
+
+    //Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -302,6 +333,9 @@ btnLoan.addEventListener('click', function (e) {
 
       //Update UI
       updateUI(currentAccount);
+      //Reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -528,7 +562,7 @@ const num = 2323323.12;
 console.log('US:  ', new Intl.NumberFormat('en-US', option).format(num));
 console.log('Germany:  ', new Intl.NumberFormat('de-DE', option).format(num));
 
-*/
+
 
 const ingredients = ['olives', 'spinach'];
 
@@ -546,3 +580,5 @@ setInterval(function () {
   const now = new Date();
   console.log(now);
 }, 3000);
+
+*/
