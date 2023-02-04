@@ -6,6 +6,12 @@ const Person = function (firstName, birthYear) {
   this.birthYear = birthYear;
 };
 
+Person.hey = function () {
+  console.log('Hey there');
+  console.log(this);
+};
+
+
 const jonas = new Person('Jonas', 1991);
 
 //1 empty object is created
@@ -72,7 +78,7 @@ console.log(h1);
 
 console.dir(x => x + 1);
 
-*/
+
 
 //class expression
 //const PersonCL = class{};
@@ -103,6 +109,11 @@ class PersonCL {
 
   get fullName() {
     return this._fullName;
+  }
+
+  static hey() {
+    console.log('hey there');
+    console.log(this);
   }
 }
 
@@ -137,3 +148,31 @@ const account = {
 };
 
 console.log(account.latest);
+
+Person.hey();
+
+PersonCL.hey();
+
+
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
+
+console.log(steven.__proto__ == PersonProto);
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
+*/
