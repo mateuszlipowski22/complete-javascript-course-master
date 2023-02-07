@@ -331,16 +331,19 @@ class Account {
   //Public interface
   deposite(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposite(-val);
+    return this;
   }
 
   requestLoad(val) {
     if (this.#approveLoan(val)) {
       this.deposite(val);
       console.log(`Loan approved`);
+      return this;
     }
   }
 
@@ -368,3 +371,7 @@ console.log(acc1);
 // console.log(acc1.#movements);
 // console.log(acc1.#pin);
 // console.log(acc1.#approveLoan);
+
+Account.helper();
+
+acc1.deposite(300).deposite(500).withdraw(35).requestLoad(25000).withdraw(4000);
