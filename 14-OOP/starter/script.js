@@ -211,7 +211,7 @@ console.log(mike.__proto__.__proto__);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
-*/
+
 
 // class declaration
 class PersonCL {
@@ -271,3 +271,33 @@ class StudentCl extends PersonCL {
 const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.introduce();
 martha.calcAge();
+
+*/
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steve = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.fullName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'COmputer Science');
+jay.introduce();
+jay.calcAge();
