@@ -12,7 +12,8 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 class Workout {
   date = new Date();
-  id = (new Date() + '').slice(-10);
+  id = (Date.now() + '').slice(-10);
+  clicks = 0;
   constructor(cords, distance, duration) {
     this.cords = cords;
     this.distance = distance;
@@ -38,6 +39,10 @@ class Workout {
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
+  }
+
+  click() {
+    this.clicks++;
   }
 }
 
@@ -80,12 +85,14 @@ class Cycling extends Workout {
 class App {
   #map;
   #mapEvent;
+  #mapZoomLevel = 13;
   #workouts = [];
 
   constructor() {
     this._getPosition();
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
+    containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
   }
 
   _getPosition() {
@@ -108,7 +115,7 @@ class App {
 
     const cords = [latitude, longitude];
 
-    this.#map = L.map('map').setView(cords, 13);
+    this.#map = L.map('map').setView(cords, this.#mapZoomLevel);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
@@ -184,8 +191,6 @@ class App {
     }
 
     this.#workouts.push(workout);
-
-    console.log(workout);
 
     //Clear input data
     inputDistance.value =
@@ -269,6 +274,24 @@ class App {
     }
 
     form.insertAdjacentHTML('afterend', html);
+  }
+
+  _moveToPopup(e) {
+    const workoutEl = e.target.closest('.workout');
+
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+
+    this.#map.setView(workout.cords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
+    workout.click();
   }
 }
 
