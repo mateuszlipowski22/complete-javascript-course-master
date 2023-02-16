@@ -23,51 +23,54 @@ const renderCountry = function (data, className = '') {
   countriesContainer.style.opacity = 1;
 };
 
-const getCountryAndNeighbour = function (country) {
-  const request = new XMLHttpRequest();
-  request.open('GET', `https://restcountries.com/v2/name/${country}`);
-  request.send();
+// const getCountryAndNeighbour = function (country) {
+//   const request = new XMLHttpRequest();
+//   request.open('GET', `https://restcountries.com/v2/name/${country}`);
+//   request.send();
 
-  request.addEventListener('load', function () {
-    //   console.log(this.responseText);
-    const [data] = JSON.parse(this.responseText);
-    //   console.log(data);
-    renderCountry(data);
+//   request.addEventListener('load', function () {
+//     //   console.log(this.responseText);
+//     const [data] = JSON.parse(this.responseText);
+//     //   console.log(data);
+//     renderCountry(data);
 
-    const neighbour = data.borders?.[0];
+//     const neighbour = data.borders?.[0];
 
-    if (!neighbour) return;
+//     if (!neighbour) return;
 
-    const request2 = new XMLHttpRequest();
-    request2.open('GET', `https://restcountries.com/v2/alpha/${neighbour}`);
-    request2.send();
+//     const request2 = new XMLHttpRequest();
+//     request2.open('GET', `https://restcountries.com/v2/alpha/${neighbour}`);
+//     request2.send();
 
-    request2.addEventListener('load', function () {
-      const data2 = JSON.parse(this.responseText);
-      console.log(data2);
-      renderCountry(data2, 'neighbour');
-    });
-  });
-};
+//     request2.addEventListener('load', function () {
+//       const data2 = JSON.parse(this.responseText);
+//       console.log(data2);
+//       renderCountry(data2, 'neighbour');
+//     });
+//   });
+// };
 
-getCountryAndNeighbour('poland');
-// getCountryData('portugal');
-// getCountryData('usa');
-// getCountryData('germany');
-// getCountryData('norway');
+// getCountryAndNeighbour('poland');
+// // getCountryData('portugal');
+// // getCountryData('usa');
+// // getCountryData('germany');
+// // getCountryData('norway');
 
-setTimeout(() => {
-  console.log('1 second passed');
-  setTimeout(() => {
-    console.log('2 second passed');
-    setTimeout(() => {
-      console.log('3 second passed');
-      setTimeout(() => {
-        console.log('4 second passed');
-        setTimeout(() => {
-          console.log('5 second passed');
-        }, 1000);
-      }, 1000);
-    }, 1000);
-  }, 1000);
-}, 1000);
+// setTimeout(() => {
+//   console.log('1 second passed');
+//   setTimeout(() => {
+//     console.log('2 second passed');
+//     setTimeout(() => {
+//       console.log('3 second passed');
+//       setTimeout(() => {
+//         console.log('4 second passed');
+//         setTimeout(() => {
+//           console.log('5 second passed');
+//         }, 1000);
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
+
+const request = fetch(`https://restcountries.com/v2/name/portugal`);
+console.log(request);
