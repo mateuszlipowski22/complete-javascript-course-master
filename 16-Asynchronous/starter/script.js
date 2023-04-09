@@ -347,21 +347,37 @@ const getPosition = function () {
 };
 
 const whereAmI = async function () {
-  const pos = await getPosition();
-  console.log(pos);
-  const { latitude: lat, longitude: lng } = pos.coords;
-  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  try {
+    const pos = await getPosition();
+    console.log(pos);
+    const { latitude: lat, longitude: lng } = pos.coords;
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) throw new Error('Problem getting location data');
 
-  const dataGeo = await resGeo.json();
-  console.log(dataGeo);
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
 
-  const res = await fetch(
-    `https://restcountries.com/v2/name/${dataGeo.country}`
-  );
-  const data = await res.json();
-  console.log(data);
-  renderCountry(data[0]);
+    const res = await fetch(
+      `https://restcountries.com/v2/name/${dataGeo.country}`
+    );
+    if (!resGeo.ok) throw new Error('Problem getting location data');
+
+    const data = await res.json();
+    console.log(data);
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(err);
+    renderError(`${err.message}`);
+  }
 };
 
 whereAmI();
 console.log('First');
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   y = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
