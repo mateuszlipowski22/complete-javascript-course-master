@@ -1,4 +1,5 @@
 import * as model from './model.js';
+import MODAL_CLOSE_SEC from './config.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
@@ -9,6 +10,7 @@ import paginationView from './views/paginationView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
+import { setTimeout } from 'core-js';
 
 if (module.hot) {
   module.hot.accept();
@@ -75,8 +77,23 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlAddRecipe = function (newRecipe) {
-  console.log(newRecipe);
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    addRecipeView.renderSpinner();
+
+    await model.uploadRecipe(newRecipe);
+    console.log(model.state.recipe);
+    recipeView.render(model.state.recipe);
+
+    addRecipeView.renderMessege();
+
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, MODAL_CLOSE_SEC * 1000);
+  } catch (err) {
+    console.log(err);
+    addRecipeView.renderError(err.message);
+  }
 };
 
 const init = function () {
@@ -90,9 +107,3 @@ const init = function () {
 };
 
 init();
-
-const clearBookmarks = function () {
-  localStorage.clear('bookmarks');
-};
-
-// clearBookmarks();
